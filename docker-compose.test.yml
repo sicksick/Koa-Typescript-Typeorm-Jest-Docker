@@ -1,0 +1,25 @@
+version: '3.1'
+services:
+  app:
+    build: .
+    command: bash -c 'while !</dev/tcp/dbtest/5432; do sleep 1; done; npm run test'
+    links:
+      - dbtest
+    depends_on:
+      - dbtest
+    volumes:
+      - .:/app
+      - ./.env.test:/app/.env
+      - /app/node_modules
+    env_file:
+      - .env.test
+  dbtest:
+    image: postgres:11
+    ports:
+      - "5434:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=dbtest
+    volumes:
+      - ./data/postgres-data-test:/var/lib/postgresql/data

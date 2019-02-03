@@ -1,0 +1,59 @@
+{
+  "name": "koa-vs-typescript",
+  "version": "0.0.1",
+  "description": "koa-vs-typescript",
+  "main": "dist/server.js",
+  "repository": "have not",
+  "license": "free",
+  "scripts": {
+    "nodemon": "nodemon --watch 'src/**/*' -e ts,tsx --exec ts-node src/index.ts",
+    "build": "tslint -c tslint.json -p tsconfig.json && tsc",
+    "start": "tsc && ./node_modules/.bin/typeorm migration:run && node dist/index.js",
+    "test": "tsc && ./node_modules/.bin/typeorm migration:run && jest --runInBand --detectOpenHandles --forceExit"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^3.0.0",
+    "@types/dotenv": "^4.0.3",
+    "@types/joi": "^14.3.0",
+    "@types/jsonwebtoken": "^8.3.0",
+    "@types/koa": "^2.0.44",
+    "@types/koa-bodyparser": "^4.2.1",
+    "@types/koa-helmet": "^3.1.2",
+    "@types/koa-passport": "^4.0.2",
+    "@types/koa-static": "^4.0.0",
+    "@types/node": "^10.12.18",
+    "@types/passport-jwt": "^3.0.1",
+    "nodemon": "^1.17.4",
+    "request-promise": "^4.2.2",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.10.0",
+    "typescript": "^3.2.4"
+  },
+  "dependencies": {
+    "bcrypt": "^3.0.0",
+    "dotenv": "^6.0.0",
+    "faker": "^4.1.0",
+    "jest": "^23.6.0",
+    "joi": "^14.3.1",
+    "jsonwebtoken": "^8.4.0",
+    "koa": "^2.6.2",
+    "koa-bodyparser": "^4.2.1",
+    "koa-helmet": "^4.0.0",
+    "koa-multer": "^1.0.2",
+    "koa-passport": "^4.1.1",
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0",
+    "passport-jwt": "^4.0.0",
+    "pg": "^7.4.3",
+    "reflect-metadata": "^0.1.13",
+    "routing-controllers": "^0.7.7",
+    "typeorm": "^0.2.6",
+    "winston": "^3.0.0"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "<rootDir>/node_modules/",
+      "helpers"
+    ]
+  }
+}

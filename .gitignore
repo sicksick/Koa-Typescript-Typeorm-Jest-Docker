@@ -1,0 +1,8 @@
+.env
+node_modules
+.idea
+*.iml
+.DS_Store
+dist/**/*
+*.log
+docker-compose.yml

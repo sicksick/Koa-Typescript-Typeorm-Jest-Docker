@@ -1,0 +1,27 @@
+version: '3.1'
+services:
+  app:
+    build: .
+    command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; npm start'
+    links:
+      - db
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - ./.env.prod:/app/.env
+      - /app/node_modules
+    env_file:
+      - .env.prod
+  db:
+    image: postgres:11
+    ports:
+      - "5434:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=db
+    volumes:
+      - ./data/postgres-data-prod:/var/lib/postgresql/data
